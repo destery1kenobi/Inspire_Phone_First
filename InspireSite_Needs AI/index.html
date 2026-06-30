@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>INSPIRE Clinical AI Assistant</title>
+  <meta
+    name="description"
+    content="Project INSPIRE Clinical AI Assistant reference interface for substance use disorder care in pregnancy and childbirth."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="app-header__inner">
+        <div class="brand-block">
+          <div class="brand-logo" aria-hidden="true">
+            <img
+              src="Assets/logo_INSPIRE%202.png"
+              alt="Project INSPIRE logo"
+              class="logo-image"
+              id="brandLogo"
+            />
+            <div class="logo-fallback">INSPIRE</div>
+          </div>
+          <div class="brand-copy">
+            <p class="eyebrow">Clinical Reference Tool</p>
+            <h1>INSPIRE Clinical AI Assistant</h1>
+            <p class="brand-subtitle">Mobile-first reference experience for SUD care in pregnancy and childbirth</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="status-pill">AI Integration Ready</div>
+          <button class="ghost-button" type="button" data-jump-view="ask">Open Assistant</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <aside class="app-sidebar" aria-label="Primary navigation">
+        <nav class="side-nav" id="desktopNav">
+          <button class="nav-button is-active" type="button" data-view="home">
+            <span class="nav-icon">⌂</span>
+            <span>Home</span>
+          </button>
+          <button class="nav-button" type="button" data-view="ask">
+            <span class="nav-icon">✦</span>
+            <span>Ask</span>
+          </button>
+          <button class="nav-button" type="button" data-view="resources">
+            <span class="nav-icon">☰</span>
+            <span>Resources</span>
+          </button>
+          <button class="nav-button" type="button" data-view="more">
+            <span class="nav-icon">⋯</span>
+            <span>More</span>
+          </button>
+        </nav>
+      </aside>
+
+      <section class="app-content">
+        <section class="view-panel is-active" id="view-home" data-view-panel="home" aria-labelledby="view-home-title">
+          <div class="hero-card surface-card">
+            <div class="hero-copy">
+              <p class="eyebrow">About This Tool</p>
+              <h2 id="view-home-title">A cleaner point-of-care experience</h2>
+              <p id="aboutCopy" class="hero-text"></p>
+            </div>
+            <div class="hero-actions">
+              <button class="primary-button" type="button" data-jump-view="ask">Ask a Question</button>
+              <button class="secondary-button" type="button" data-jump-view="resources">Browse Resources</button>
+            </div>
+          </div>
+
+          <div class="content-grid content-grid--home">
+            <section class="surface-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">What it helps with</p>
+                  <h3>Key guidance areas</h3>
+                </div>
+                <p class="section-note">Focused categories instead of one crowded page.</p>
+              </div>
+              <div class="feature-grid" id="featureGrid"></div>
+            </section>
+
+            <section class="surface-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Quick Start</p>
+                  <h3>Use the assistant fast</h3>
+                </div>
+              </div>
+              <div class="step-list">
+                <article class="step-card">
+                  <span class="step-number">1</span>
+                  <div>
+                    <h4>Choose a prompt</h4>
+                    <p>Use a sample question or write your own clinical question.</p>
+                  </div>
+                </article>
+                <article class="step-card">
+                  <span class="step-number">2</span>
+                  <div>
+                    <h4>Review quick resources</h4>
+                    <p>Open the resource view for algorithms, reporting guidance, and INSPIRE references.</p>
+                  </div>
+                </article>
+                <article class="step-card">
+                  <span class="step-number">3</span>
+                  <div>
+                    <h4>Stay within approved use</h4>
+                    <p>Do not enter PHI unless the deployed environment has been approved for it.</p>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-panel" id="view-ask" data-view-panel="ask" aria-labelledby="view-ask-title" hidden>
+          <div class="content-grid content-grid--ask">
+            <section class="surface-card assistant-card assistant-card--main">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Assistant</p>
+                  <h2 id="view-ask-title">Your SUD care assistant for pregnancy and childbirth</h2>
+                  <p class="section-text" id="heroCopy"></p>
+                </div>
+              </div>
+
+              <div class="assistant-window">
+                <div class="assistant-thread">
+                  <article class="chat-bubble chat-bubble--assistant">
+                    <p class="chat-role">Assistant</p>
+                    <p>
+                      Ask about screening, pain management, NOWS interventions, Utah laws and policies,
+                      patient-centered communication, or a Project INSPIRE scenario.
+                    </p>
+                  </article>
+                </div>
+
+                <form class="assistant-composer" id="assistantComposer">
+                  <label class="sr-only" for="assistantInput">Question for the AI assistant</label>
+                  <textarea
+                    id="assistantInput"
+                    name="assistantInput"
+                    rows="5"
+                    placeholder="Type your clinical question here. Example: What is an opioid-sparing protocol for patients in labor with a history of SUD?"
+                  ></textarea>
+
+                  <div class="composer-meta">
+                    <div class="composer-status" id="composerStatus">Select a prompt below to load it here.</div>
+                    <div class="character-count" id="characterCount">0 characters</div>
+                  </div>
+
+                  <div class="composer-actions">
+                    <button class="secondary-button" type="button" id="clearInputButton">Clear</button>
+                    <button class="primary-button" type="submit" id="sendButton" disabled>AI Integration Pending</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+
+            <aside class="surface-card assistant-card assistant-card--side">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Example Questions</p>
+                  <h3>Tap to preload</h3>
+                  <p class="section-text">Mobile-friendly prompt chips keep typing to a minimum.</p>
+                </div>
+              </div>
+              <div class="prompt-list" id="promptList"></div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view-panel" id="view-resources" data-view-panel="resources" aria-labelledby="view-resources-title" hidden>
+          <div class="content-grid">
+            <section class="surface-card">
+              <div class="section-head section-head--stack-mobile">
+                <div>
+                  <p class="eyebrow">Resources</p>
+                  <h2 id="view-resources-title">Key clinical resources</h2>
+                  <p class="section-text">Search and browse the core quick-reference areas without crowding the assistant screen.</p>
+                </div>
+                <label class="search-shell" for="resourceSearch">
+                  <span class="sr-only">Search resources</span>
+                  <input type="search" id="resourceSearch" placeholder="Search resources" />
+                </label>
+              </div>
+
+              <div class="accordion" id="resourceAccordion"></div>
+              <p class="empty-state" id="resourceEmptyState" hidden>No resources match that search.</p>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-panel" id="view-more" data-view-panel="more" aria-labelledby="view-more-title" hidden>
+          <div class="content-grid">
+            <section class="surface-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">More</p>
+                  <h2 id="view-more-title">Additional quick access</h2>
+                  <p class="section-text">Secondary content lives here so the main clinical workflow stays focused.</p>
+                </div>
+              </div>
+
+              <div class="quick-access-grid" id="quickAccess"></div>
+            </section>
+
+            <section class="surface-card">
+              <div class="section-head">
+                <div>
+                  <p class="eyebrow">Privacy &amp; Compliance</p>
+                  <h3>Approved use reminder</h3>
+                </div>
+              </div>
+              <p class="section-text" id="privacyCopy"></p>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Mobile navigation" id="mobileNav">
+      <button class="mobile-nav__button is-active" type="button" data-view="home">
+        <span class="mobile-nav__icon">⌂</span>
+        <span class="mobile-nav__label">Home</span>
+      </button>
+      <button class="mobile-nav__button" type="button" data-view="ask">
+        <span class="mobile-nav__icon">✦</span>
+        <span class="mobile-nav__label">Ask</span>
+      </button>
+      <button class="mobile-nav__button" type="button" data-view="resources">
+        <span class="mobile-nav__icon">☰</span>
+        <span class="mobile-nav__label">Resources</span>
+      </button>
+      <button class="mobile-nav__button" type="button" data-view="more">
+        <span class="mobile-nav__icon">⋯</span>
+        <span class="mobile-nav__label">More</span>
+      </button>
+    </nav>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

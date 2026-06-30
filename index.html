@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>INSPIRE Clinical AI Assistant</title>
+  <meta name="description" content="Project INSPIRE Clinical AI Assistant reference interface for substance use disorder care in pregnancy and childbirth." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="app-header__logo">
+        <img src="Assets/logo_INSPIRE%202.png" alt="Project INSPIRE logo" class="logo-image" id="brandLogo" />
+        <div class="logo-fallback" aria-hidden="true">I</div>
+      </div>
+      <div class="app-header__brand">
+        <span class="app-header__name">INSPIRE</span>
+        <span class="app-header__sub">Clinical AI Assistant</span>
+      </div>
+      <div class="app-header__badge">READY</div>
+    </header>
+
+    <!-- TOP TAB NAV -->
+    <nav class="top-tabs" aria-label="Main navigation">
+      <button class="tab-btn is-active" type="button" data-view="home">Home</button>
+      <button class="tab-btn" type="button" data-view="ask">Ask</button>
+      <button class="tab-btn" type="button" data-view="resources">Resources</button>
+      <button class="tab-btn" type="button" data-view="more">More</button>
+    </nav>
+
+    <!-- CONTENT BODY -->
+    <div class="app-body">
+
+      <!-- HOME PANEL -->
+      <section class="view-panel" id="view-home" data-view-panel="home">
+        <div class="panel-scroll">
+          <button class="search-cta" type="button" data-jump-view="ask">
+            <svg class="search-cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Ask a clinical question…</span>
+          </button>
+          <p class="section-label">Guidance Areas</p>
+          <div class="feature-grid" id="featureGrid"></div>
+          <div class="home-actions">
+            <button class="btn-primary" type="button" data-jump-view="ask">Ask a Question</button>
+            <button class="btn-outline" type="button" data-jump-view="resources">Browse Resources</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ASK PANEL -->
+      <section class="view-panel view-panel--ask" id="view-ask" data-view-panel="ask" hidden>
+        <div class="chip-rail" id="promptList"></div>
+        <div class="chat-thread" id="chatThread">
+          <article class="bubble bubble--assistant">
+            <p>Ask about screening, pain management, NOWS interventions, Utah laws and policies, patient-centered communication, or a Project INSPIRE scenario.</p>
+          </article>
+        </div>
+        <form class="composer" id="assistantComposer">
+          <label class="sr-only" for="assistantInput">Question for the AI assistant</label>
+          <textarea
+            id="assistantInput"
+            name="assistantInput"
+            rows="3"
+            placeholder="Type your clinical question…"
+          ></textarea>
+          <div class="composer-footer">
+            <span class="char-count" id="characterCount">0 chars</span>
+            <button class="btn-primary composer-send" type="submit" id="sendButton" disabled>Send</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RESOURCES PANEL -->
+      <section class="view-panel view-panel--resources" id="view-resources" data-view-panel="resources" hidden>
+        <div class="sticky-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <label class="sr-only" for="resourceSearch">Search resources</label>
+          <input type="search" id="resourceSearch" placeholder="Search resources" />
+        </div>
+        <div class="list-body" id="resourceList"></div>
+        <p class="empty-state" id="resourceEmptyState" hidden>No resources match that search.</p>
+      </section>
+
+      <!-- MORE PANEL -->
+      <section class="view-panel" id="view-more" data-view-panel="more" hidden>
+        <div class="panel-scroll">
+          <p class="section-label">Quick Access</p>
+          <div class="list-rows" id="quickAccess"></div>
+          <div class="compliance-block">
+            <p class="section-label">Privacy &amp; Compliance</p>
+            <p class="compliance-text" id="privacyCopy"></p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- .app-body -->
+  </div><!-- .app-shell -->
+
+  <script src="app.js" defer></script>
+</body>
+</html>

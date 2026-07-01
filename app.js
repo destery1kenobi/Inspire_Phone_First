@@ -211,6 +211,7 @@ function setupLogoFallback() {
 
 function init() {
   document.getElementById("privacyCopy").textContent = appContent.privacy;
+  document.getElementById("homePrivacyCopy").textContent = appContent.privacy;
   renderFeatures();
   renderPrompts();
   renderResources();

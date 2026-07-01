@@ -40,40 +40,101 @@
       <!-- HOME PANEL -->
       <section class="view-panel" id="view-home" data-view-panel="home">
         <div class="panel-scroll">
-          <button class="search-cta" type="button" data-jump-view="ask">
-            <svg class="search-cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <span>Ask a clinical question…</span>
-          </button>
-          <p class="section-label">Guidance Areas</p>
-          <div class="feature-grid" id="featureGrid"></div>
-          <div class="home-actions">
-            <button class="btn-primary" type="button" data-jump-view="ask">Ask a Question</button>
-            <button class="btn-outline" type="button" data-jump-view="resources">Browse Resources</button>
+          <section class="home-intro" aria-labelledby="homeIntroTitle">
+            <p class="section-label">Clinical Reference Tool</p>
+            <h1 id="homeIntroTitle">INSPIRE Clinical AI Assistant</h1>
+            <p class="home-intro__copy">Mobile-first reference support for substance use disorder care in pregnancy and childbirth.</p>
+            <div class="home-actions">
+              <button class="btn-primary" type="button" data-jump-view="ask">Ask a Question</button>
+              <button class="btn-outline" type="button" data-jump-view="resources">Browse Resources</button>
+            </div>
+          </section>
+
+          <section class="linear-section" aria-labelledby="workflowTitle">
+            <div class="section-heading">
+              <p class="section-label">Quick Start</p>
+              <h2 id="workflowTitle">Use the assistant fast</h2>
+            </div>
+            <div class="workflow-list">
+              <article class="workflow-step">
+                <span class="workflow-step__number">1</span>
+                <div>
+                  <h3>Ask the clinical question</h3>
+                  <p>Start with your own question or use a sample prompt when typing needs to be minimal.</p>
+                </div>
+              </article>
+              <article class="workflow-step">
+                <span class="workflow-step__number">2</span>
+                <div>
+                  <h3>Review supporting resources</h3>
+                  <p>Open reference areas for algorithms, reporting guidance, and INSPIRE training notes.</p>
+                </div>
+              </article>
+              <article class="workflow-step">
+                <span class="workflow-step__number">3</span>
+                <div>
+                  <h3>Stay within approved use</h3>
+                  <p>Do not enter PHI unless the deployed environment has been approved for that purpose.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="linear-section" aria-labelledby="guidanceTitle">
+            <div class="section-heading section-heading--row">
+              <div>
+                <p class="section-label">Guidance Areas</p>
+                <h2 id="guidanceTitle">Key clinical topics</h2>
+              </div>
+              <button class="text-link" type="button" data-jump-view="ask">Open Ask</button>
+            </div>
+            <div class="feature-grid" id="featureGrid"></div>
+          </section>
+
+          <div class="clinical-note">
+            <p class="section-label">Approved Use Reminder</p>
+            <p id="homePrivacyCopy"></p>
           </div>
         </div>
       </section>
 
       <!-- ASK PANEL -->
       <section class="view-panel view-panel--ask" id="view-ask" data-view-panel="ask" hidden>
-        <div class="chip-rail" id="promptList"></div>
-        <div class="chat-thread" id="chatThread">
-          <article class="bubble bubble--assistant">
+        <div class="ask-scroll">
+          <section class="ask-intro" aria-labelledby="askIntroTitle">
+            <p class="section-label">Assistant</p>
+            <h1 id="askIntroTitle">Your SUD care assistant for pregnancy and childbirth</h1>
             <p>Ask about screening, pain management, NOWS interventions, Utah laws and policies, patient-centered communication, or a Project INSPIRE scenario.</p>
-          </article>
-        </div>
-        <form class="composer" id="assistantComposer">
-          <label class="sr-only" for="assistantInput">Question for the AI assistant</label>
-          <textarea
-            id="assistantInput"
-            name="assistantInput"
-            rows="3"
-            placeholder="Type your clinical question…"
-          ></textarea>
-          <div class="composer-footer">
-            <span class="char-count" id="characterCount">0 chars</span>
-            <button class="btn-primary composer-send" type="submit" id="sendButton" disabled>Send</button>
+          </section>
+
+          <div class="chat-thread" id="chatThread">
+            <article class="bubble bubble--assistant">
+              <p>Ask a focused clinical question. The answer area is ready for the AI vendor connection while this interface remains consistent for learners and clinicians.</p>
+            </article>
           </div>
-        </form>
+
+          <form class="composer" id="assistantComposer">
+            <label class="composer-label" for="assistantInput">Question for the AI assistant</label>
+            <textarea
+              id="assistantInput"
+              name="assistantInput"
+              rows="4"
+              placeholder="Type your clinical question..."
+            ></textarea>
+            <div class="composer-footer">
+              <span class="char-count" id="characterCount">0 chars</span>
+              <button class="btn-primary composer-send" type="submit" id="sendButton" disabled>Send</button>
+            </div>
+          </form>
+
+          <section class="prompt-library" aria-labelledby="promptLibraryTitle">
+            <div class="section-heading">
+              <p class="section-label">Example Questions</p>
+              <h2 id="promptLibraryTitle">Tap to preload</h2>
+            </div>
+            <div class="chip-rail" id="promptList"></div>
+          </section>
+        </div>
       </section>
 
       <!-- RESOURCES PANEL -->
